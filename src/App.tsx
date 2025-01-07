@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Form from "./Components/Form/Form";
 import "./App.css";
 
 type Todo = {
@@ -16,6 +17,7 @@ function App() {
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		addTodo();
+		setInput("");
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -34,22 +36,31 @@ function App() {
 		setTodos(newTodos);
 	};
 
+	const deleteTodo = (id: string) => {
+		const updatedTodos = todos.filter((todo) => todo.id !== id);
+		setTodos(updatedTodos);
+	};
+
 	return (
 		<>
 			<h1>Todo</h1>
 
 			<div>Form</div>
-			<form onSubmit={(e) => handleSubmit(e)}>
-				<input id="addTodo" name="addTodo" type="text" value={input} onChange={(e) => handleChange(e)} placeholder="Add New Todo" />
-			</form>
+			<Form handleSubmit={handleSubmit} handleChange={handleChange} input={input} />
 			<div>List of Todos</div>
 			<div className="list-container">
-				<div className="list-item">
-					<span>O</span>Read <button>X</button>
-				</div>
-				<div className="list-item">Sleep</div>
-				<div className="list-item">Eat</div>
-				<div className="list-item">Drink Water</div>
+				{todos.map((item) => {
+					return (
+						<div key={item.id} className="list-item">
+							{!todos.length && <div className="list-item">no todos</div>}
+							<span>o</span>
+							{item.title}
+							<span>
+								<button onClick={() => deleteTodo(item.id)}>X</button>
+							</span>
+						</div>
+					);
+				})}
 			</div>
 			{/* <div>Footer with controls</div> */}
 			<div className="control-container">
