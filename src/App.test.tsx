@@ -1,21 +1,27 @@
-import { render, screen, userEvent } from "./utils/test-utils";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { vi } from "vitest";
+import { mockTodos, mockTodoFunctions } from "./mocks/mockTodos";
 import App from "./App";
 
-describe("test", () => {
-	it("tests vitest", () => {
-		expect(true).toBeTruthy();
-	});
+describe("App Component", () => {
+
+	beforeEach(() => {
+		vi.clearAllMocks();
+	  });
+
+	 it("should render initial todos", () => {
+		const { container } = render(<App />);
+		expect(container.querySelectorAll('.list-item')).toHaveLength(0);
+		
+	})
+
 });
 
 describe("the app", () => {
-	it("should have planets here text ", () => {
+	it("should Todo Test", () => {
 		render(<App />);
-		const message = screen.getByText("Vite + React");
+		const message = screen.getByText("Todo");
 		expect(message).toBeVisible();
-	});
-	it("should increment count on click", async () => {
-		render(<App />);
-		userEvent.click(screen.getByRole("button"));
-		expect(await screen.findByText(/count is 1/i)).toBeInTheDocument();
 	});
 });
