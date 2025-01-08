@@ -37,7 +37,7 @@ function App() {
 		setTodos(newTodos);
 	};
 
-	const deleteTodo = (id: string) => {
+	const deleteTodo = (id: string): void => {
 		const updatedTodos = todos.filter((todo) => todo.id !== id);
 		setTodos(updatedTodos);
 	};

@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./Card.css";
 
 interface CardProps {
@@ -13,7 +14,7 @@ const Card = ({ id, title, completed, deleteTodo }: CardProps) => {
 			<span>{completed}</span>
 			{title}
 			<span>
-				<button onClick={() => deleteTodo(id)}>X</button>
+				<Button onClick={() => deleteTodo(id)} text="X"/>
 			</span>
 		</div>
 	);
