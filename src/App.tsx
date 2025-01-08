@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Form from "./Components/Form/Form";
+import Card from "./Components/Card/Card";
 import "./App.css";
 
 type Todo = {
@@ -50,16 +51,8 @@ function App() {
 			<div>List of Todos</div>
 			<div className="list-container">
 				{todos.map((item) => {
-					return (
-						<div key={item.id} className="list-item">
-							{!todos.length && <div className="list-item">no todos</div>}
-							<span>o</span>
-							{item.title}
-							<span>
-								<button onClick={() => deleteTodo(item.id)}>X</button>
-							</span>
-						</div>
-					);
+					const { id, title, completed } = item;
+					return <Card id={id} title={title} completed={completed} deleteTodo={deleteTodo} />;
 				})}
 			</div>
 			{/* <div>Footer with controls</div> */}

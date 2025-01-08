@@ -9,14 +9,6 @@
 	padding: 2em;
 }
 
-.list-item {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	border-bottom: grey solid;
-	padding: 10px;
-}
-
 .list-container {
 	display: flex;
 	flex-direction: column;
