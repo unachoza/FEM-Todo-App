@@ -2,6 +2,8 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Form from "./Components/Form/Form";
 import Card from "./Components/Card/Card";
+import Button from "./Components/Button/Button";
+import backgroundImage from "./assets/images/bg-desktop-light.jpg";
 import "./App.css";
 
 type Todo = {
@@ -11,9 +13,9 @@ type Todo = {
 };
 
 function App() {
-	const [count, setCount] = useState(0);
 	const [todos, setTodos] = useState<Todo[]>([]);
 	const [input, setInput] = useState<string>("");
+	const [completed, setCompleted] = useState<boolean>(false);
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
@@ -42,25 +44,36 @@ function App() {
 		setTodos(updatedTodos);
 	};
 
+	const toggleTodo = (id: string): void => {
+		console.log("clicked");
+		const selectedTodo = todos.filter((todo) => todo.id === id);
+		selectedTodo[0].completed = !completed;
+		const todoIndex = todos.findIndex((todo) => todo.id === id);
+		console.log({ todoIndex });
+		console.log(selectedTodo[0]);
+		// const updatedTodos = [...todos, !todos[todoIndex].completed]
+
+		setCompleted((prevState) => !prevState);
+	};
+
 	return (
 		<>
-			<h1>Todo</h1>
-
-			<div>Form</div>
-			<Form handleSubmit={handleSubmit} handleChange={handleChange} input={input} />
-			<div>List of Todos</div>
-			<div className="list-container">
-				{todos.map((item) => {
-					const { id, title, completed } = item;
-					return <Card id={id} title={title} completed={completed} deleteTodo={deleteTodo} />;
-				})}
-			</div>
-			{/* <div>Footer with controls</div> */}
-			<div className="control-container">
-				<button>All</button>
-				<button>Active</button>
-				<button>Completed</button>
-				<button>Clear Completed</button>
+			<div className="container">
+				<h1>TODO</h1>
+				<Form handleSubmit={handleSubmit} handleChange={handleChange} input={input} />
+				<div>List of Todos</div>
+				<div className="list-container">
+					{todos.map((item) => {
+						const { id, title, completed } = item;
+						return <Card key={id} id={id} title={title} completed={completed} deleteTodo={deleteTodo} toggle={toggleTodo} />;
+					})}
+				</div>
+				<div className="control-container">
+					<Button onClick={() => console.log()} text="All" />
+					<Button onClick={() => console.log()} text="Active" />
+					<Button onClick={() => console.log()} text="Completed" />
+					<Button onClick={() => console.log()} text="Clear Completed" />
+				</div>
 			</div>
 		</>
 	);

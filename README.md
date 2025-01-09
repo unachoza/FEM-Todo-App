@@ -17,3 +17,12 @@ Users should be able to:
 ### Screenshot
 
 ![](./screenshot.jpg)
+
+
+## What I learned / Resources
+
+Found this site for custom css radio buttons
+https://webspe.net/tools/en/radio-button/
+
+Gradiant boarder explanation
+https://www.youtube.com/watch?v=N1h_XISN8Q8&ab_channel=CluelessExpert
