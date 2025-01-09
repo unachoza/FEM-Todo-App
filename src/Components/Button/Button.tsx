@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import "./Button.css";
 
 interface ButtonProps {
-	text: string;
+	text: string | JSX.Element;
 	onClick: MouseEventHandler;
 }
 

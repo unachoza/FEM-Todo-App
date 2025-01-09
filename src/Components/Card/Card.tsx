@@ -1,6 +1,6 @@
-import { ChangeEvent, ChangeEventHandler, FormEvent, SetStateAction } from "react";
 import Button from "../Button/Button";
-import check from '../../assets/images/icon-check.svg'
+import check from "../../assets/images/icon-check.svg";
+import X from "../../assets/images/icon-cross.svg";
 import "./Card.css";
 
 interface CardProps {
@@ -12,12 +12,24 @@ interface CardProps {
 }
 
 const Card = ({ id, title, completed, deleteTodo, toggle }: CardProps) => {
+
+	const icon: JSX.Element = <img src={X} alt="cross"/>
 	return (
 		<div key={id} className="list-item">
-			<label className="radio-button"><input type='radio' name='radio' value={title} checked={completed}onChange={() => toggle(id)} /> {title} <span><img src={check} alt="check mark" /></span></label>
-			{/* <span>
-				<Button onClick={() => deleteTodo(id)} text="X" />
-			</span> */}
+			<label
+				style={{
+					textDecoration: completed ? "line-through" : "none",
+				}}
+				className="checkbox"
+			>
+				<input type="checkbox" name={title} value={title} checked={completed} onChange={() => toggle(id)} /> {title}{" "}
+				<span>
+					<img src={check} alt="check mark" />
+				</span>
+			</label>
+			<span className="delete-button">
+				<Button onClick={() => deleteTodo(id)} text={icon} />
+			</span>
 		</div>
 	);
 };
