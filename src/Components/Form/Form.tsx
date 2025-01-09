@@ -10,7 +10,10 @@ interface FormProps {
 const Form = ({ handleSubmit, handleChange, input }: FormProps) => {
 	return (
 		<form onSubmit={(e) => handleSubmit(e)}>
-			<input id="addTodo" name="addTodo" type="text" value={input} onChange={(e) => handleChange(e)} placeholder="Add New Todo" />
+			<div className="input">
+				<span></span>
+				<input id="addTodo" name="addTodo" type="text" value={input} onChange={(e) => handleChange(e)} placeholder="Create a new todo ..." />
+			</div>
 		</form>
 	);
 };

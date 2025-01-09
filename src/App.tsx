@@ -61,7 +61,6 @@ function App() {
 			<div className="container">
 				<h1>TODO</h1>
 				<Form handleSubmit={handleSubmit} handleChange={handleChange} input={input} />
-				<div>List of Todos</div>
 				<div className="list-container">
 					{todos.map((item) => {
 						const { id, title, completed } = item;
