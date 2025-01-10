@@ -1,17 +1,17 @@
 button {
 	background: transparent;
-    border: none;
+	border: none;
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
 	cursor: pointer;
 }
 button:hover {
-	transform: translateY(-3px);
+	transform: translateY(-1px);
 	transition: all 0.2s;
 }
 
 button:focus,
 button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+	color: blue;
 }
