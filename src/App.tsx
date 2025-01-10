@@ -85,13 +85,13 @@ function App() {
 						const { id, title, completed } = item;
 						return <Card key={id} id={id} title={title} completed={completed} deleteTodo={deleteTodo} toggle={toggleTodo} />;
 					})}
-				</div>
-				<div className="list-item controls-container">
-					<div>{todos.filter((todo) => todo.completed === false).length} items left</div>
-					<div className="button-group">
-						<Button onClick={() => setFilteredState("all")} text="All" />
-						<Button onClick={() => setFilteredState("active")} text="Active" />
-						<Button onClick={() => setFilteredState("completed")} text="Completed" />
+					<div className="list-item controls-container">
+						<div>{todos.filter((todo) => todo.completed === false).length} items left</div>
+						<div className="filter-button-group">
+							<Button onClick={() => setFilteredState("all")} text="All" />
+							<Button onClick={() => setFilteredState("active")} text="Active" />
+							<Button onClick={() => setFilteredState("completed")} text="Completed" />
+						</div>
 						<Button onClick={() => setTodos([])} text="Clear Completed" />
 					</div>
 				</div>

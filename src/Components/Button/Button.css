@@ -15,3 +15,7 @@ button:focus,
 button:focus-visible {
 	color: blue;
 }
+
+button:hover {
+	font-weight: bold;
+}
