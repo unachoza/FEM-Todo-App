@@ -28,8 +28,6 @@ function App() {
 		localStorage.setItem("ITEMS", JSON.stringify(todos));
 	}, [todos]);
 
-	useEffect(() => {}, [filteredState]);
-
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		addTodo();
@@ -60,37 +58,16 @@ function App() {
 	const toggleTodo = (id: string): void => {
 		const selectedTodo = todos.filter((todo) => todo.id === id);
 		selectedTodo[0].completed = !completed;
-		console.log({ todos });
 		setCompleted((prevState) => !prevState);
-	};
-
-	const showAllTodos = () => {
-		setFilteredState("all");
-	};
-
-	const showActiveTodos = () => {
-		setFilteredState("active");
-		// return todos.filter((todo) => todo.completed === false);
-	};
-
-	const showCompletedTodos = () => {
-		setFilteredState("completed");
-		// return todos.filter((todo) => todo.completed === true);
-	};
-
-	const clearAllTodos = () => {
-		setTodos([]);
 	};
 
 	const displayTodos = (filteredState: string): Todo[] => {
 		let filteredTodos: Todo[] = todos;
 		if (filteredState === "active") {
 			return (filteredTodos = todos.filter((todo) => todo.completed === false));
-			//  showActiveTodos();
 		}
 		if (filteredState === "completed") {
 			return (filteredTodos = todos.filter((todo) => todo.completed === true));
-			//  showCompletedTodos();
 		}
 		if (filteredState === "all") {
 			return filteredTodos;
@@ -112,10 +89,10 @@ function App() {
 				<div className="list-item controls-container">
 					<div>{todos.filter((todo) => todo.completed === false).length} items left</div>
 					<div className="button-group">
-						<Button onClick={showAllTodos} text="All" />
-						<Button onClick={showActiveTodos} text="Active" />
-						<Button onClick={showCompletedTodos} text="Completed" />
-						<Button onClick={clearAllTodos} text="Clear Completed" />
+						<Button onClick={() => setFilteredState("all")} text="All" />
+						<Button onClick={() => setFilteredState("active")} text="Active" />
+						<Button onClick={() => setFilteredState("completed")} text="Completed" />
+						<Button onClick={() => setTodos([])} text="Clear Completed" />
 					</div>
 				</div>
 			</div>
