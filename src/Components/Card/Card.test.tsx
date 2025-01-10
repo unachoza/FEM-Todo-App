@@ -8,6 +8,7 @@ describe("Card Components", () => {
 		id: "1",
 		title: "Test Todo",
 		completed: false,
+		toggle: vi.fn(),
 		deleteTodo: vi.fn(),
 	};
 
@@ -23,30 +24,39 @@ describe("Card Components", () => {
 	it("calls deleteTodo with correct id when delete button is clicked", () => {
 		render(<Card {...mockProps} />);
 
-		const deleteButton = screen.getByText("X");
+		const deleteButton = screen.getByAltText("cross");
 		fireEvent.click(deleteButton);
 
 		expect(mockProps.deleteTodo).toHaveBeenCalledTimes(1);
 		expect(mockProps.deleteTodo).toHaveBeenCalledWith("1");
 	});
-
-	// it('displays completion status', () => {})
-
-	// it("removes list-item when delete button is clicked", () => { });
-
+	
 	it("renders with the correct CSS class", () => {
 		const { container } = render(<Card {...mockProps} />);
 		expect(container.firstChild).toHaveClass("list-item");
 	});
 
+	it("displays completion status css", () => {
+		const mockProps = {
+			id: "1",
+			title: "Test Completed Todo",
+			completed: true,
+			toggle: vi.fn(),
+			deleteTodo: vi.fn(),
+		};
+		render(<Card {...mockProps} />);
+		const listItem = screen.getByText("Test Completed Todo");
+		expect(listItem).toHaveStyle({ background: "linear-gradient(293deg, rgba(85, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%)" });
+	});
+
+
 	it("maintains proper structure with all elements", () => {
 		const { container } = render(<Card {...mockProps} />);
-
-		expect(container.querySelector("span")).toBeInTheDocument();
-		expect(container.querySelector("button")).toBeInTheDocument();
-		expect(screen.getByText("X")).toBeInTheDocument();
+		expect(container.querySelector(".list-item")).toBeInTheDocument();
+		expect(container.querySelector("label")).toBeInTheDocument();
+		expect(container.querySelector("input")).toBeInTheDocument();
+		expect(screen.getByAltText("check mark")).toBeInTheDocument();
+		expect(screen.getByAltText("cross")).toBeInTheDocument();
 	});
-	// it("toggle defaults to incomplete / false", () => {});
-	// it("clicking toggle to complete has css response", () => {});
-	// it("contains same number of lists items and todos remembered in state", () => {})
+
 });

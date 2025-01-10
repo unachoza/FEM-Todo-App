@@ -4,7 +4,6 @@ import X from "../../assets/images/icon-cross.svg";
 import Button from "./Button";
 
 describe("Button componenet", () => {
-
 	it("renders button with correct text", () => {
 		const handleClick = vi.fn();
 		render(<Button onClick={handleClick} text="Click me" />);
@@ -15,12 +14,11 @@ describe("Button componenet", () => {
 
 	it("displays image if an image is passed as text", () => {
 		const handleClick = vi.fn();
-		const icon: JSX.Element = <img src={X} alt="cross"/>
+		const icon: JSX.Element = <img src={X} alt="cross" />;
 		render(<Button onClick={handleClick} text={icon} />);
 		const buttonImage = screen.getByAltText("cross");
 		expect(buttonImage).toBeInTheDocument();
-
-	})
+	});
 
 	it("triggers onClickHandler when clicked", () => {
 		const handleClick = vi.fn();
@@ -29,6 +27,7 @@ describe("Button componenet", () => {
 		fireEvent.click(buttonElement);
 		expect(handleClick).toHaveBeenCalledTimes(1);
 	});
+
 	it("onMouseHover shows correct css behavior", () => {
 		const handleClick = vi.fn();
 		render(<Button onClick={handleClick} text="Click me" />);

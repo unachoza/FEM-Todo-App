@@ -23,7 +23,7 @@ const Card = ({ id, title, completed, deleteTodo, toggle }: CardProps) => {
 				className="checkbox"
 			>
 				<input type="checkbox" name={title} value={title} checked={completed} onChange={() => toggle(id)} /> {title}{" "}
-				<span>
+				<span tests-id="checkbox">
 					<img src={check} alt="check mark" />
 				</span>
 			</label>
