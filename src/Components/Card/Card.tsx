@@ -12,17 +12,17 @@ interface CardProps {
 }
 
 const Card = ({ id, title, completed, deleteTodo, toggle }: CardProps) => {
-
-	const icon: JSX.Element = <img src={X} alt="cross"/>
+	const icon: JSX.Element = <img src={X} alt="cross" />;
 	return (
 		<div key={id} className="list-item">
 			<label
+				role="check-item"
 				style={{
 					textDecoration: completed ? "line-through" : "none",
 				}}
 				className="checkbox"
 			>
-				<input type="checkbox" name={title} value={title} checked={completed} onChange={() => toggle(id)} /> {title}{" "}
+				<input role="check-item" type="checkbox" name={title} value={title} checked={completed} onChange={() => toggle(id)} /> {title}{" "}
 				<span tests-id="checkbox">
 					<img src={check} alt="check mark" />
 				</span>
