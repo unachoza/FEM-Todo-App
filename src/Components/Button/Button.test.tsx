@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import X from "../../assets/images/icon-cross.svg";
 import Button from "./Button";
 
 describe("Button componenet", () => {
@@ -11,6 +12,15 @@ describe("Button componenet", () => {
 		expect(buttonElement).toBeInTheDocument();
 		expect(buttonElement).toHaveTextContent("Click me");
 	});
+
+	it("displays image if an image is passed as text", () => {
+		const handleClick = vi.fn();
+		const icon: JSX.Element = <img src={X} alt="cross"/>
+		render(<Button onClick={handleClick} text={icon} />);
+		const buttonImage = screen.getByAltText("cross");
+		expect(buttonImage).toBeInTheDocument();
+
+	})
 
 	it("triggers onClickHandler when clicked", () => {
 		const handleClick = vi.fn();
@@ -24,6 +34,6 @@ describe("Button componenet", () => {
 		render(<Button onClick={handleClick} text="Click me" />);
 		const buttonElement = screen.getByRole("button");
 		fireEvent.mouseOver(buttonElement);
-		expect(buttonElement).toHaveStyle({ border: "solid #3a6976aa" });
+		expect(buttonElement).toHaveStyle({ fontWeight: "bold" });
 	});
 });
