@@ -86,7 +86,7 @@ function App() {
 						return <Card key={id} id={id} title={title} completed={completed} deleteTodo={deleteTodo} toggle={toggleTodo} />;
 					})}
 					<div className="list-item controls-container">
-						<div>{todos.filter((todo) => todo.completed === false).length} items left</div>
+						<div className="remaining-todos">{todos.filter((todo) => todo.completed === false).length} items left</div>
 						<div className="filter-button-group">
 							<Button onClick={() => setFilteredState("all")} text="All" />
 							<Button onClick={() => setFilteredState("active")} text="Active" />
