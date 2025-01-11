@@ -56,6 +56,11 @@ function App() {
 		setTodos(updatedTodos);
 	};
 
+	const clearCompletedTodos = () => {
+		const updatedTodos = todos.filter((todo) => todo.completed === false);
+		setTodos(updatedTodos);
+	};
+
 	const toggleTodo = (id: string): void => {
 		const selectedTodo = todos.filter((todo) => todo.id === id);
 		selectedTodo[0].completed = !completed;
@@ -96,7 +101,7 @@ function App() {
 							<Button onClick={() => setFilteredState("active")} text="Active" />
 							<Button onClick={() => setFilteredState("completed")} text="Completed" />
 						</div>
-						<Button onClick={() => setTodos([])} text="Clear Completed" />
+						<Button onClick={() => clearCompletedTodos()} text="Clear Completed" />
 					</div>
 				</div>
 			</div>
