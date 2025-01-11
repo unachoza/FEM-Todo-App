@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Form from "./Components/Form/Form";
 import Card from "./Components/Card/Card";
 import Button from "./Components/Button/Button";
+import ToggleSetting from "./Components/ToggleSetting/ToggleSetting";
 import "./App.css";
 
 type Todo = {
@@ -78,7 +79,10 @@ function App() {
 	return (
 		<>
 			<div className="container">
-				<h1>TODO</h1>
+				<div className="header">
+					<h1>TODO</h1>
+					<ToggleSetting />
+				</div>
 				<Form handleSubmit={handleSubmit} handleChange={handleInputChange} input={input} />
 				<div className="list-container">
 					{displayTodos(filteredState)?.map((item) => {

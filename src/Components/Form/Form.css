@@ -10,6 +10,7 @@ input {
 	padding-left: 75px;
 	font-size: 18px;
 	font-family: "Josefin Sans", serif;
+	background-color: var(--Background-color);
 }
 .input {
 	display: flex;

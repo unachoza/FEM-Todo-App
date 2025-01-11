@@ -5,8 +5,47 @@
 	text-align: center;
 	font-family: "Josefin Sans", serif;
 }
+:root {
+	--mobile-background-image: url("./assets/images/bg-mobile-light.jpg");
+	--desktop-background-image: url("./assets/images/bg-desktop-light.jpg");
+	/* COLORS */
+	/* color mode === hsl(hue, saturation, lightness) */
+	--bright-blue: hsl(220, 98%, 61%);
+	--Background-color: hsl(0, 0%, 98%);
+	--line-color: hsl(236, 33%, 92%);
+	--CompletedText-color: hsl(233, 11%, 84%);
+	--Text-color: hsl(220, 4%, 14%);
+	--TodoText-color: hsl(235, 19%, 35%);
+	--inputText-color: hsl(237, 14%, 26%);
+	--body-color: hsl(0, 0%, 100%);
+	--border-color: hsl(236, 33%, 92%);
+
+	--shadow: 35px 50px -15px hsla(237, 20%, 80%, 0.5);
+
+	transition: 0.2s;
+}
+
+[dark-theme="dark"] {
+	--mobile-background-image: url("./assets/images/bg-mobile-dark.jpg");
+	--desktop-background-image: url("./assets/images/bg-desktop-dark.jpg");
+	--bright-blue: hsl(220, 98%, 61%);
+	--Background-color: hsl(235, 21%, 11%);
+	--line-color: hsl(237, 14%, 26%);
+	--CompletedText-color: hsl(233, 14%, 35%);
+	--Text-color: hsl(234, 11%, 52%);
+	--TodoText-color: hsl(234, 39%, 85%);
+	--inputText-color: hsl(234, 39%, 85%);
+	--border-color: hsl(237, 14%, 26%);
+
+	--body-color: hsl(235, 24%, 19%);
+
+	--shadow: 35px 50px -15px hsla(0, 0%, 0%, 0.5);
+
+	transition: 0.2s;
+}
+
 body {
-	background: url("./assets/images/bg-desktop-light.jpg");
+	background: var(--desktop-background-image) var(--body-color);
 	background-repeat: no-repeat !important;
 	background-position: center !important;
 	background-position: top !important;
@@ -17,6 +56,14 @@ body {
 	align-items: flex-start;
 	flex-direction: column;
 	margin-top: 10vh;
+	color: var(--Text-color);
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 }
 
 h1 {
@@ -31,7 +78,7 @@ h1 {
 	justify-content: space-around;
 	width: 100%;
 	padding: 20px 0px;
-	background: white;
+	background: --body-color;
 	z-index: 100;
 	border-radius: 5px;
 }
