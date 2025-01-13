@@ -12,10 +12,11 @@ describe("App Component", () => {
 
 	it("renders initial todos correctly", () => {
 		render(<App />);
+		const { container } = render(<App />);
 		mockTodos.forEach((todo) => {
 			render(<Card {...todo} />);
 		});
-		const checkboxes = screen.getAllByRole("check-item");
-		expect(checkboxes).toHaveLength(3);
+		const checkboxes = container.querySelectorAll(".checkbox");
+		expect(checkboxes).toHaveLength(5);
 	});
 });

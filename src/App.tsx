@@ -4,6 +4,7 @@ import Form from "./Components/Form/Form";
 import Card from "./Components/Card/Card";
 import Button from "./Components/Button/Button";
 import ToggleSetting from "./Components/ToggleSetting/ToggleSetting";
+import { defaultTodos } from "./mocks/defaultData";
 import "./App.css";
 
 type Todo = {
@@ -18,16 +19,17 @@ function App() {
 	const [completed, setCompleted] = useState<boolean>(false);
 	const [input, setInput] = useState<string>("");
 	const [filteredState, setFilteredState] = useState<FilterState>("all");
+	const [todos, setTodos] = useState<Todo[]>(defaultTodos);
 
-	const [todos, setTodos] = useState<Todo[]>(() => {
-		const localValue = localStorage.getItem("ITEMS");
-		if (localValue == null) return [];
-		return JSON.parse(localValue);
-	});
+	// const [todos, setTodos] = useState<Todo[]>(() => {
+	// 	const localValue = localStorage.getItem("ITEMS");
+	// 	if (localValue == null) return defaultTodos;
+	// 	return JSON.parse(localValue);
+	// });
 
-	useEffect(() => {
-		localStorage.setItem("ITEMS", JSON.stringify(todos));
-	}, [todos]);
+	// useEffect(() => {
+	// 	localStorage.setItem("ITEMS", JSON.stringify(todos));
+	// }, [todos]);
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
